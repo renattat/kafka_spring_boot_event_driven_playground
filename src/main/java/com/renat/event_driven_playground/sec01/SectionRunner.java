@@ -9,7 +9,7 @@ public class SectionRunner {
 	public static void main(String[] args) {
 		SpringApplication.run(SectionRunner.class,
 				"--section=sec01",
-				"--config=02-from-beginning");
+				"--config=03-consumer-group");
 	}
 
 }
