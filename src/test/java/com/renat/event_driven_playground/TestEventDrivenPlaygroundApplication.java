@@ -1,6 +1,6 @@
 package com.renat.event_driven_playground;
 
-import com.renat.event_driven_playground.sec01.SectionRunner;
+import com.renat.event_driven_playground.sec02.SectionRunner;
 import org.springframework.boot.SpringApplication;
 
 public class TestEventDrivenPlaygroundApplication {
