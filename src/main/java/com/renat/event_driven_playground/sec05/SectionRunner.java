@@ -1,4 +1,4 @@
-package com.renat.event_driven_playground.sec04;
+package com.renat.event_driven_playground.sec05;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,7 +11,7 @@ public class SectionRunner {
 
         public static void main(String[] args) {
             SpringApplication.run(Consumer.class,
-                    "--section=sec04",
+                    "--section=sec05",
                     "--config=01-consumer");
         }
     }
@@ -22,7 +22,7 @@ public class SectionRunner {
         public static void main(String[] args) {
             SpringApplication.run(
                     Producer.class,
-                    "--section=sec04",
+                    "--section=sec05",
                     "--config=02-producer");
         }
     }
