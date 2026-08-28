@@ -22,7 +22,7 @@ public class SectionRunner {
         public static void main(String[] args) {
             SpringApplication.run(Processor.class,
                     "--section=sec07",
-                    "--config=03-payment-processor");
+                    "--config=04-shipment-processor");
         }
     }
 
