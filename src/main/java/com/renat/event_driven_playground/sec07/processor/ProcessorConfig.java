@@ -38,11 +38,12 @@ public class ProcessorConfig {
     }
 
     private Notification createSMSNotification(Order order) {
-        return null;
+        return new Notification(order.id(), NotificationChannel.SMS, String.valueOf(+9_111_222_333L + order.customerId()));
     }
 
     private Notification createEmailNotification(Order order) {
-        return null;
+        return new Notification(order.id(), NotificationChannel.EMAIL, "user.%d@gmail.com".formatted(order.customerId()));
+
     }
 
 
