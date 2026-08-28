@@ -1,0 +1,49 @@
+package com.renat.event_driven_playground.sec07.processor;
+
+import com.renat.event_driven_playground.sec07.dto.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.messaging.Message;
+import org.springframework.messaging.support.MessageBuilder;
+
+import java.util.List;
+import java.util.UUID;
+import java.util.function.Function;
+
+@Configuration
+public class ProcessorConfig {
+
+    @Bean // 1-to-1 mapping
+    public Function<Order, Payment> paymentProcessor() {
+        return (Order order) -> new Payment(order.id(), order.amount(), UUID.randomUUID());
+    }
+
+    @Bean // 1-to-0/1: filter - spring cloud stream drops the message on null
+    public Function<Order, Shipment> shipmentProcessor() {
+        return (Order order) -> {
+            if (ProductType.PHYSICAL.equals(order.productType())) {
+                return new Shipment(order.id(), "FEDEX-" + order.id());
+            }
+            return null;
+        };
+    }
+
+    @Bean // 1-to-N mapping
+    public Function<Order, List<Message<Notification>>> notificationProcessor() {
+        return (Order order) -> List.of(
+                MessageBuilder.withPayload(createSMSNotification(order)).build(),
+                MessageBuilder.withPayload(createEmailNotification(order)).build()
+        );
+    }
+
+    private Notification createSMSNotification(Order order) {
+        return null;
+    }
+
+    private Notification createEmailNotification(Order order) {
+        return null;
+    }
+
+
+}
