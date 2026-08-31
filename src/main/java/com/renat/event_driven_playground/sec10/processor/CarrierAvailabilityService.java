@@ -1,0 +1,22 @@
+package com.renat.event_driven_playground.sec10.processor;
+
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
+
+import java.util.concurrent.atomic.AtomicBoolean;
+
+@Service
+public class CarrierAvailabilityService {
+
+    private final AtomicBoolean fedexAvailable = new AtomicBoolean(true);
+
+    public boolean isFedexAvailable() {
+        return fedexAvailable.get();
+    }
+
+    @Scheduled(fixedDelay = 10_000)
+    void simulateAvailabilityChange(){
+        // only one thread updates, this is safe
+        fedexAvailable.set(!fedexAvailable.get());
+    }
+}
