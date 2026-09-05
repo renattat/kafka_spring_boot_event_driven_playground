@@ -49,7 +49,6 @@ public class ProcessorConfig {
         // emit debit request
         this.streamBridge.send(TRANSACTION_REQUEST_OUT, debitRequest);
         this.runWithDelay(runnable2);
-
     }
 
     private static Runnable noop() {
